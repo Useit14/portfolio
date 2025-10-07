@@ -3,14 +3,14 @@ version: "3.8"
 services:
   ctlog:
     build:
-      context: ./packages/ctlog
+      context: ./apps/ctlog
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
 #   project2:
 #     build:
-#       context: ./packages/project2
+#       context: ./apps/project2
 #     ports:
 #       - "3001:3001"
 #     environment:
