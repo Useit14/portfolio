@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -b && vite build",
     "dev": "vite",
+    "start": "vite serve dist",
     "docker:build": "docker build -f Dockerfile -t portfolio-ctlog .",
     "deploy": "docker-compose up -d --build"
   },

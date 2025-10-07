@@ -1,35 +1,17 @@
-# Базовый образ
+# Этап сборки
 FROM node:18-alpine AS builder
-
-# Рабочий каталог
 WORKDIR /app
-
-# Копируем package.json и package-lock.json
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm ci
-
-# Копируем код
 COPY . .
-
-# Собираем проект
 RUN npm run build
 
-# Стадия production
+# Этап продакшена
 FROM node:18-alpine
-
 WORKDIR /app
-
-# Копируем только необходимые файлы из build stage
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package*.json ./
-
-# Устанавливаем только production зависимости
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
 RUN npm ci --only=production
-
-# Экспонируем порт
-EXPOSE 3000
-
-# Команда запуска
 CMD ["npm", "start"]
