@@ -1,0 +1,17 @@
+version: "1.0"
+
+services:
+  ctlog:
+    build:
+      context: ./packages/ctlog
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+#   project2:
+#     build:
+#       context: ./packages/project2
+#     ports:
+#       - "3001:3001"
+#     environment:
+#       - NODE_ENV=production

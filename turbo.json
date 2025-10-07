@@ -16,6 +16,21 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "docker:build": {
+      "dependsOn": ["build"],
+      "cache": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".dockerignore",
+        "Dockerfile",
+        "package.json",
+        "package-lock.json"
+      ],
+      "outputs": ["dist/**", "docker-images/**"]
+    },
+    "deploy": {
+      "dependsOn": ["docker:build"]
     }
   }
 }
