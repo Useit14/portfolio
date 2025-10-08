@@ -18,13 +18,20 @@
 
 
 # Этап сборки
-FROM node:20-alpine AS builder
+FROM node:20-alpine AS base
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
-RUN npm install -g typescript
-COPY . .
-RUN npm run build
+COPY ./apps/ctlog/package.json ./apps/ctlog/package.json
+
+RUN npm i
+
+FROM base AS builder
+
+WORKDIR /app
+
+COPY ./apps/ctlog ./apps/ctlog
+
+RUN npm run build -w ./apps/client
 
 # @description: Запуск собранного приложения
 FROM caddy:2.7-alpine as runner
