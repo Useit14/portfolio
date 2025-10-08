@@ -31,7 +31,7 @@ WORKDIR /app
 
 COPY ./apps/ctlog ./apps/ctlog
 
-RUN npm run build -w ./apps/client
+RUN npm run build -w ./apps/ctlog
 
 # @description: Запуск собранного приложения
 FROM caddy:2.7-alpine as runner
