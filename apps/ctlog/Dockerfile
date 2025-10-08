@@ -14,4 +14,4 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 RUN npm ci --only=production
-CMD ["npm", "start"]
+CMD ["vite", "serve", "dist"]
