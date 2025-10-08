@@ -6,7 +6,6 @@ services:
       dockerfile: ./.ci/ctlog.Dockerfile
       context: .
     container_name: ctlog
-    command: npm run start
     ports:
       - "80:80"
     environment:
