@@ -17,7 +17,7 @@ i18n
       order: ["localStorage", "navigator"], // Порядок определения языка
       lookupLocalStorage: "i18nextLng",
     },
-    debug: false,
+    debug: true,
     interpolation: {
       escapeValue: false,
     },
