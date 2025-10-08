@@ -31,7 +31,7 @@ FROM base AS builder
 WORKDIR /app
 
 COPY ./apps/ctlog ./apps/ctlog
-COPY ./apps/ctlog/public ./apps/ctlog/public
+COPY ./apps/ctlog/public/locales ./apps/ctlog/public/locales
 
 RUN npm run build -w ./apps/ctlog
 
@@ -39,7 +39,7 @@ RUN npm run build -w ./apps/ctlog
 FROM caddy:2.7-alpine as runner
 
 COPY --from=builder /app/apps/ctlog/dist /usr/share/caddy
-COPY --from=builder /app/apps/ctlog/public /usr/share/caddy/public
+COPY --from=builder /app/apps/ctlog/public/locales /usr/share/caddy/public/locales
 COPY .ci/Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
