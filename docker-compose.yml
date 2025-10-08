@@ -3,12 +3,19 @@ version: "3.8"
 services:
   ctlog:
     build:
-      context: ./apps/ctlog
+      dockerfile: ./.ci/ctlog.Dockerfile
+      context: .
+    container_name: ctlog
     command: npm run start
     ports:
-      - "5173:5173"
+      - "80:80"
     environment:
       - NODE_ENV=production
+    networks:
+      - inner
+
+networks:
+  inner:
 #   project2:
 #     build:
 #       context: ./apps/project2

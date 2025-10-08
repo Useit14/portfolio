@@ -1,0 +1,21 @@
+{
+	admin off
+	log {
+		format json
+	}
+}
+
+:80 {
+	encode gzip zstd
+
+  handle_path /api/* {
+      rewrite /api/ /
+      reverse_proxy server:5000
+  }
+
+  handle {
+      root * /usr/share/caddy
+      try_files {path} /index.html
+      file_server
+  }
+}
