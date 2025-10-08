@@ -38,6 +38,7 @@ RUN npm run build -w ./apps/ctlog
 FROM caddy:2.7-alpine as runner
 
 COPY --from=builder /app/apps/ctlog/dist /usr/share/caddy
+COPY --from=builder /app/public/locales ./public/locales
 COPY .ci/Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
