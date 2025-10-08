@@ -20,6 +20,7 @@
 # Этап сборки
 FROM node:20-alpine AS base
 WORKDIR /app
+RUN npm install -g npm
 COPY package*.json ./
 COPY ./apps/ctlog/package.json ./apps/ctlog/package.json
 
