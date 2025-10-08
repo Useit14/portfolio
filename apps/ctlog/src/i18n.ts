@@ -1,4 +1,3 @@
-// i18n.js
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import HttpBackend from "i18next-http-backend";
@@ -10,14 +9,14 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: "/public/locales/{{lng}}/translation.json", // Путь к файлам переводов
+      loadPath: "/public/locales/{{lng}}/translation.json",
     },
-    fallbackLng: "en", // Язык по умолчанию
+    fallbackLng: "en",
     detection: {
-      order: ["localStorage", "navigator"], // Порядок определения языка
+      order: ["localStorage", "navigator"],
       lookupLocalStorage: "i18nextLng",
     },
-    debug: true,
+    debug: false,
     interpolation: {
       escapeValue: false,
     },
